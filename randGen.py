@@ -38,21 +38,12 @@ SunnySeasons = {
     '11': 10
 }
 
-roommates = [
-    'CJ',
-    'Emily',
-    'Jordan',
-    'Bryce',
-    'Anthony'
-]
-
 
 def rand_main(*args):
     if len(args) < 1:
         message = 'There needs to be a command after random like:\n' \
                   'sp\n' \
                   'sunny\n' \
-                  'roommate\n' \
                   'choice or order of any # of names\n' \
                   'any # for a random choice between 0 and that number'
     else:
@@ -63,13 +54,14 @@ def rand_main(*args):
             sec_args = list(args[1:])
         if command == 'sp':
             message = SP()
-        elif command == 'roommate':
-            message = rand_roommate()
         elif command == 'sunny':
             message = sunny()
         elif command.isdigit():
             num = int(command)
-            message = str(random.randint(0, int(num)))
+            if num < 0:
+                message = str(random.randint(int(num), 0))
+            else:
+                message = str(random.randint(0, int(num)))
         elif command == 'choice':
             message = random.choice(sec_args)
             if message == 'cj':
@@ -88,7 +80,6 @@ def rand_main(*args):
             message = 'I couldn\'t find the correct command\n here is the list of command:' \
                   'sp\n' \
                   'sunny\n' \
-                  'roommate\n' \
                   'any # of names\n' \
                   'any # for a random choice between 0 and that number'
     return message
@@ -108,10 +99,3 @@ def sunny():
     ep = str(random.randint(1, SunnySeasons[seas]))
     answer = 'Season {} episode {}'.format(seas, ep)
     return answer
-
-
-def rand_roommate():
-    global roommates
-    return random.choice(roommates)
-
-# Blank Comment
