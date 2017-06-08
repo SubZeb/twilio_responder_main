@@ -1,6 +1,7 @@
 # A very simple Flask Hello World app for you to get started with...
 
-from flask import Flask, request, redirect
+from flask import Flask, request
+#import twilio
 from twilio.twiml.messaging_response import MessagingResponse
 import randGen
 
