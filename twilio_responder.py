@@ -1,7 +1,7 @@
 # A very simple Flask Hello World app for you to get started with...
 
-from flask import Flask, request
-from twilio import twiml
+from flask import Flask, request, redirect
+from twilio.twiml.messaging_response import MessagingResponse
 import randGen
 
 app = Flask(__name__)
@@ -32,7 +32,7 @@ def incoming_sms():
     else:
         command, args = '', []
     # Start our TwiML response
-    resp = twiml.Response()
+    resp = MessagingResponse()
     answers = ['wifi', 'random']
     # Determine the right reply for this message
     if command not in answers:
